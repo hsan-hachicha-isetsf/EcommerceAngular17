@@ -1,0 +1,34 @@
+<div class="container">
+<h1 align="center">Ajouter Catégorie</h1>
+<form>
+
+    <div >
+
+        <input type="text"  placeholder="Nom Catégorie" id="nomcategorie" name="nomcategorie" [(ngModel)]="newcategory().nomcategorie"/>
+     
+      </div>
+  
+ 
+        <div >
+        <input type="text"  placeholder="Image Catégorie" id="imagecategorie" name="imagecategorie"  [(ngModel)]="newcategory().imagecategorie"  />
+        </div>
+
+     
+    
+      <div class="row">
+        <div class="col-3">
+          
+          <button type="submit" class="btn btn-success" (click)="createCategory()">Ajouter</button>  
+        
+        </div>  
+        <div class="col-3">
+          
+            <button type="button" class="btn btn-danger" (click)="annuler()">Annuler</button>  
+          
+          </div>  
+        
+      
+    </div>
+
+  </form>
+</div>
