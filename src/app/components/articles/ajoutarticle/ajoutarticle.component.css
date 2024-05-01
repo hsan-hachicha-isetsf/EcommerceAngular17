@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+}
+
+form {
+    
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+input[type="text"],
+input[type="email"],
+textarea,select
+ {
+    display: block; /* Affiche les éléments sur une nouvelle ligne */
+    margin-bottom: 15px; /* Ajoute un espacement en bas de chaque élément */
+}

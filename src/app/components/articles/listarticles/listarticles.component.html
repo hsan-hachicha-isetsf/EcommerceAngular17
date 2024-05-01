@@ -1,1 +1,42 @@
-<p>listarticles works!</p>
+<div class="container">
+    <h2 align="center">Liste des articles</h2>
+    <a href="#" routerLink="/addarticle" class="btn btn-success">
+        <i class="fa-solid fa-circle-plus"></i>
+        Add Article
+        </a>
+      @if(articles().length>0){
+    <table datatable class="table table-hover table-bordered"  [dtTrigger]="dtTrigger">
+      <thead>
+  <tr>
+  <th>Image</th>
+  <th>Référence</th>
+  <th>Désignation</th>
+  <th>Marque</th>
+  <th>Qte Stock</th>
+  <th>Prix</th>
+  <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (item of articles(); track item.reference) {
+  <tr> 
+  <td><img [src]="item.imageart" alt="..." width="70" height="50"/> </td> 
+  <td>{{ item.reference }}</td> 
+  <td>{{ item.designation }}</td> 
+  <td>{{ item.marque }}</td> 
+  <td>{{ item.qtestock }}</td> 
+  <td>{{ item.prix }}</td> 
+  <td>
+   
+    <button class="btn btn-danger" (click)="deleteArticle(item)">
+        <i class="fa-solid fa-pen-to-square"></i> 
+        Supprimer</button>
+  </td> 
+  
+  </tr>
+  } 
+  </tbody>
+  </table>
+}
+  </div>
+
