@@ -28,7 +28,10 @@ export class AjoutcategComponent {
       alert("valleur image catégorie incorrecte")
       return;
     }
-     this.categorieService.createCategory(this.newcategory())
+     this.categorieService.createCategory(this.newcategory()).subscribe(((data: any)=>{
+      this.route.navigate(['/affichcat'])
+      
+      }))
     this.route.navigate(['/affichcat'])
     
    }

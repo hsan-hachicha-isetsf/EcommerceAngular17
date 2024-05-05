@@ -1,11 +1,9 @@
+<app-ajoutarticle/>
 <div class="container">
     <h2 align="center">Liste des articles</h2>
-    <a href="#" routerLink="/addarticle" class="btn btn-success">
-        <i class="fa-solid fa-circle-plus"></i>
-        Add Article
-        </a>
+    
       @if(articles().length>0){
-    <table datatable class="table table-hover table-bordered"  [dtTrigger]="dtTrigger">
+    <table  class="table table-hover table-bordered"  datatable  >
       <thead>
   <tr>
   <th>Image</th>
@@ -34,9 +32,15 @@
   </td> 
   
   </tr>
+  }
+  @empty {
+    <p>Aucun article trouvé</p>
   } 
   </tbody>
+  <tfoot>
+    
+  </tfoot>
   </table>
-}
+      }
   </div>
 

@@ -1,6 +1,7 @@
 import { Injectable,inject,signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Article } from '../classes/article';
+import { articles } from '../store/store.signal';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,20 @@ export class ArticlesService {
 
   public http = inject(HttpClient);
   public url = 'http://localhost:3001/api/articles';
-  articles = signal<Article[]>([]);
+
   constructor() { }
+
+
+
+
+
     getArticles(){
-      this.http.get<Article[]>(this.url).subscribe(data => { 
-     this.articles.set(data);
+      return this.http.get<Article[]>(this.url).subscribe(data => { 
+      articles.set(data);
+
    })
       
-    return this.articles;
+    
    
   }
 
@@ -24,7 +31,7 @@ export class ArticlesService {
     this.http.delete<Article>(this.url + '/' + article._id)
     .subscribe(data => {
      
-      return this.articles.update(articles => articles.filter(art => art._id !== article._id));
+      return articles.update(articles => articles.filter(art => art._id !== article._id));
     })
     
   }
@@ -32,7 +39,7 @@ export class ArticlesService {
     createArticle(article: Article) {
       return this.http.post(this.url+'/' , article).subscribe(((data: any)=>{
           
-        this.articles.set([...this.articles(), article]);
+        articles.set([...articles(), data]);
         }))
       }
   
@@ -40,7 +47,7 @@ export class ArticlesService {
         this.http.put(this.url+ '/' + article._id, article)
         .subscribe(data => {
          
-        return this.articles.update(articles => {
+        return articles.update(articles => {
           const index = articles.findIndex(a => a._id === article._id);
           articles[index] = article;
           return articles;

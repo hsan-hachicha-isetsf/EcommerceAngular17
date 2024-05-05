@@ -1,6 +1,7 @@
 import { Injectable,inject,signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Categories } from '../classes/categories';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,31 +10,20 @@ export class CategoriesService {
   public url = 'http://localhost:3001/api/categories';
   categories = signal<Categories[]>([]);
   constructor() { }
-   getCategories(){
-     this.http.get<Categories[]>(this.url).subscribe(data => { 
-     this.categories.set(data);
-   })
-      
-    return this.categories;
    
+  getCategories():Observable<Categories[]>{
+    return this.http.get<Categories[]>(this.url)
   }
-
-  deleteCategory(category: Categories) {
-    this.http.delete<Categories>(this.url + '/' + category._id)
-    .subscribe(data => {
-     
-      return this.categories.update(categories => categories.filter(t => t._id !== category._id));
-    })
+  deleteCategory(category: Categories):Observable<Categories> {
+   return  this.http.delete<Categories>(this.url + '/' + category._id)
+    
     
   }
 
   
   
     createCategory(category: Categories) {
-      return this.http.post(this.url+'/' , category).subscribe(((data: any)=>{
-          
-        this.categories.set([...this.categories(), category]);
-        }))
+      return this.http.post(this.url+'/' , category)
       }
   
       updateCategory(category: Categories) {

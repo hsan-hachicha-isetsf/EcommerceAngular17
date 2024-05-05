@@ -1,5 +1,36 @@
+<!-- Button trigger modal -->
+
+
+<button  class="btn btn-success" (click)="openModal()">
+  <i class="fa-solid fa-circle-plus"></i>
+  Add Article
+</button>
+  
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog custom-modal-size"  role="document">
+        <div class="modal-content">
+              <div class="modal-header">
+                
+                    <button type="button" class="btn btn-default" aria-label="Close" (click)="closeModal()"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="text-center text-info">Ajout Article</h2>
+                  </div>
+              <div class="modal-body">
+                <ng-template [ngTemplateOutlet]="formul"></ng-template>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" (click)="AjoutArticle()"><i class="fa-solid fa-floppy-disk"></i> &nbsp;<b> Enregistrer</b></button>&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="closeModal()" ><i class="fa-solid fa-right-from-bracket"></i>Close</button>
+
+              </div>
+     </div>
+  </div>
+</div>
+<ng-template #formul>
+
+
 <div class="container" >
-  <h2 class="text-center text-info">Ajout Article</h2> 
+ 
 <form>
   <div class="row">  
     <div class="col-6">
@@ -44,7 +75,7 @@
 
       <div class="row">
         <div class="col-6">
-        <input type="text" class="form-control form-control-lg" [(ngModel)]="art().imageart"  placeholder="Image" name="imageart" >
+          <input type="text" class="form-control form-control-lg" placeholder="Image" id="imageart" name="imageart" [(ngModel)]="art().imageart">
         @if(art().imageart){
           <div>
         <img src={{art().imageart}} width="100" height="50"/>
@@ -54,15 +85,6 @@
     
 
 
-    <div class="row">
-      <div class="col-6">
-        <button class="btn btn-primary" (click)="AjoutArticle()"><i class="fa-solid fa-floppy-disk"></i> &nbsp;<b> Enregistrer</b></button>&nbsp;
-        <a href="#" routerLink="/afficharticles" class="btn btn-danger">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <b>Annuler</b>
-          </a>
-    </div>
-  </div>
     
 
 </div>
@@ -72,3 +94,4 @@
       
 </div>
 
+</ng-template>
